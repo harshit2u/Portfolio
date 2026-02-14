@@ -297,12 +297,6 @@ export const experiences: Experience[] = [
     description:
       "Secured runner-up position in Technothon hackathon with an innovative full-stack solution built under competitive time constraints.",
     current: false,
-    logo: "/hero.webp", // Assuming hero.webp doesn't exist but checking list... wait, I extracted "hero" from context? No, I don't see "hero.png" in the list. Wait. 
-    // Looking at file content again.
-    // Line 290: logo: "/mern.png",
-    // Line 317: logo: "/mu.jpg",
-    // Line 324: logo: "/school_logo.png",
-    // Line 331: logo: "/school_logo.png",
   },
 ];
 
