@@ -1,26 +1,156 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-navy-950: #020617;
+  --color-navy-900: #0a0f1e;
+  --color-navy-800: #111827;
+  --color-navy-700: #1e293b;
+  --color-navy-600: #334155;
+  --color-indigo-500: #6366f1;
+  --color-indigo-400: #818cf8;
+  --color-indigo-600: #4f46e5;
+  --color-cyan-400: #22d3ee;
+  --color-cyan-300: #67e8f9;
+  --color-cyan-500: #06b6d4;
+
+  --font-heading: "Outfit", sans-serif;
+  --font-body: "Inter", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Base ───────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  background: var(--color-navy-950);
+  color: #e2e8f0;
+}
+
+::selection {
+  background: var(--color-indigo-500);
+  color: white;
+}
+
+/* ── Scrollbar ──────────────────────────────── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-navy-900); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-indigo-500);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-indigo-400);
+}
+
+/* ── Gradient text ──────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-indigo-400), var(--color-cyan-400));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-alt {
+  background: linear-gradient(135deg, var(--color-cyan-400), var(--color-indigo-400));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glassmorphism ──────────────────────────── */
+.glass {
+  background: rgba(17, 24, 39, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(99, 102, 241, 0.15);
+}
+
+.glass-hover:hover {
+  background: rgba(17, 24, 39, 0.8);
+  border-color: rgba(99, 102, 241, 0.35);
+}
+
+/* ── Glow effects ───────────────────────────── */
+.glow-indigo {
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3),
+              0 0 60px rgba(99, 102, 241, 0.1);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.3),
+              0 0 60px rgba(34, 211, 238, 0.1);
+}
+
+.glow-border {
+  position: relative;
+}
+
+.glow-border::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--color-indigo-500), var(--color-cyan-400));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.glow-border:hover::after {
+  opacity: 1;
+}
+
+/* ── Animations ─────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(3deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes scroll-indicator {
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(10px); opacity: 0.5; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 8s ease-in-out 2s infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 6s ease infinite;
+}
+
+.animate-scroll {
+  animation: scroll-indicator 2s ease-in-out infinite;
+}
+
+/* ── Section spacing ────────────────────────── */
+section {
+  scroll-margin-top: 80px;
 }
