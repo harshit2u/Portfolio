@@ -3,7 +3,7 @@ export const siteConfig = {
   tagline: "Full-Stack Developer | MERN & Firebase Specialist",
   bio: [
     "I'm Harshit Upadhyay, a Full-Stack Developer specializing in building scalable, high-performance web and mobile applications using the MERN stack, Firebase, and modern frontend technologies.",
-    "I have developed systems including a hospital management platform, a secure ticket booking solution with database integration, and delivered live production websites for international clients such as MAQ Services (USA), JRE Services, and DMCT Orphanage.",
+    "I have successfully architected and deployed multiple enterprise-grade applications and secure platforms. My experience spans delivering live production solutions for international clients, focusing on scalability, database optimization, and high-performance user interfaces.",
     "My focus is on clean architecture, performance optimization, and delivering real-world business impact. I build systems that are secure, scalable, efficient, and production-ready.",
   ],
   heroTyping: [
