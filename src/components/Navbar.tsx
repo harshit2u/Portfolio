@@ -20,14 +20,17 @@ export default function Navbar() {
         setMobileOpen(false);
         const element = document.querySelector(href);
         if (element) {
-            const offset = 80; // height of fixed navbar + extra padding
-            const elementPosition = element.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.scrollY - offset;
+            // Small timeout to allow mobile menu close animation to start/finish
+            setTimeout(() => {
+                const offset = 80;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.scrollY - offset;
 
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth"
-            });
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }, 100);
         }
     };
 
