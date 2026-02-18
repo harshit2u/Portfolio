@@ -297,4 +297,19 @@ export const experiences: Experience[] = [
   },
 ];
 
+export const education = [
+  {
+    degree: "Bachelor of Engineering (IT)",
+    institution: "VPPCOE & VA",
+    score: "Recently Graduated",
+    year: "2020 - 2024",
+  },
+  {
+    degree: "Higher Secondary (HSC)",
+    institution: "State Board",
+    score: "Distinction",
+    year: "2018 - 2020",
+  },
+];
+
 
