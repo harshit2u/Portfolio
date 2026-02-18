@@ -41,11 +41,18 @@ export const metadata: Metadata = {
     title: `${siteConfig.name} | ${siteConfig.tagline}`,
     description: siteConfig.bio[0],
   },
+  icons: {
+    icon: "/hu-logo.svg",
+    shortcut: "/hu-logo.svg",
+    apple: "/hu-logo.svg",
+  },
   robots: {
     index: true,
     follow: true,
   },
 };
+
+
 
 export default function RootLayout({
   children,
@@ -72,6 +79,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${outfit.variable} font-sans antialiased`}
       >
+
         {children}
       </body>
     </html>

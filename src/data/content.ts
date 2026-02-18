@@ -2,9 +2,7 @@ export const siteConfig = {
   name: "Harshit Upadhyay",
   tagline: "Full-Stack Developer | MERN & Firebase Specialist",
   bio: [
-    "I'm Harshit Upadhyay, a Full-Stack Developer specializing in building scalable, high-performance web and mobile applications using the MERN stack, Firebase, and modern frontend technologies.",
-    "I have successfully architected and deployed multiple enterprise-grade applications and secure platforms. My experience spans delivering live production solutions for international clients, focusing on scalability, database optimization, and high-performance user interfaces.",
-    "My focus is on clean architecture, performance optimization, and delivering real-world business impact. I build systems that are secure, scalable, efficient, and production-ready.",
+    "I'm Harshit Upadhyay, a Full-Stack Developer specializing in scalable MERN and Firebase applications. I build secure, high-performance systems with clean architecture, delivering real-world impact for international clients.",
   ],
   heroTyping: [
     "Hi, I'm Harshit.",
@@ -27,7 +25,6 @@ export const navLinks = [
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
-  { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -300,34 +297,4 @@ export const experiences: Experience[] = [
   },
 ];
 
-export interface Education {
-  degree: string;
-  institution: string;
-  score: string;
-  year: string;
-  logo?: string;
-}
 
-export const education: Education[] = [
-  {
-    degree: "BE Computer Engineering",
-    institution: "University of Mumbai",
-    score: "CGPA 8.2",
-    year: "2021 – 2025",
-    logo: "/mu.webp",
-  },
-  {
-    degree: "HSC (12th)",
-    institution: "Maharashtra Board",
-    score: "71%",
-    year: "2021",
-    logo: "/school_logo.webp",
-  },
-  {
-    degree: "SSC (10th)",
-    institution: "Maharashtra Board",
-    score: "81%",
-    year: "2019",
-    logo: "/school_logo.webp",
-  },
-];

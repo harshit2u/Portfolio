@@ -23,12 +23,12 @@ export default function ParticleCanvas() {
             o: number;
         }
 
-        const particles: Particle[] = Array.from({ length: 60 }, () => ({
+        const particles: Particle[] = Array.from({ length: 100 }, () => ({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
-            r: Math.random() * 2 + 0.5,
-            dx: (Math.random() - 0.5) * 0.4,
-            dy: (Math.random() - 0.5) * 0.4,
+            r: Math.random() * 2.5 + 0.5,
+            dx: (Math.random() - 0.5) * 0.8,
+            dy: (Math.random() - 0.5) * 0.8,
             o: Math.random() * 0.5 + 0.2,
         }));
 
@@ -38,13 +38,14 @@ export default function ParticleCanvas() {
             particles.forEach((p) => {
                 p.x += p.dx;
                 p.y += p.dy;
-                if (p.x < 0) p.x = canvas.width;
-                if (p.x > canvas.width) p.x = 0;
-                if (p.y < 0) p.y = canvas.height;
-                if (p.y > canvas.height) p.y = 0;
+
+                // Bounce off edges smoothly
+                if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(99,102,241,${p.o})`;
+                ctx.fillStyle = `rgba(129, 140, 248, ${p.o})`;
                 ctx.fill();
             });
 
@@ -54,12 +55,13 @@ export default function ParticleCanvas() {
                     const dx = particles[i].x - particles[j].x;
                     const dy = particles[i].y - particles[j].y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 120) {
+                    if (dist < 140) {
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(99,102,241,${0.15 * (1 - dist / 120)})`;
-                        ctx.lineWidth = 0.5;
+                        // Dynamic opacity based on distance
+                        ctx.strokeStyle = `rgba(99, 102, 241, ${0.2 * (1 - dist / 140)})`;
+                        ctx.lineWidth = 0.8;
                         ctx.stroke();
                     }
                 }
