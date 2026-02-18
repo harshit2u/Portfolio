@@ -297,7 +297,15 @@ export const experiences: Experience[] = [
   },
 ];
 
-export const education = [
+export interface Education {
+  degree: string;
+  institution: string;
+  score: string;
+  year: string;
+  logo?: string;
+}
+
+export const education: Education[] = [
   {
     degree: "Bachelor of Engineering (IT)",
     institution: "VPPCOE & VA",
