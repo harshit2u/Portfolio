@@ -45,25 +45,44 @@ export default function Experience() {
                                                 <>
                                                     {isEvenIndex ? (
                                                         // Horizontal connection connecting cards in the same row
-                                                        <motion.div
-                                                            initial={{ scaleX: 0 }}
-                                                            whileInView={{ scaleX: 1 }}
-                                                            viewport={{ once: true, margin: "-100px" }}
-                                                            transition={{ duration: 0.6, delay: 0.2 }}
-                                                            className={`absolute top-[50%] h-[3px] rounded-full transform -translate-y-1/2 -z-10 ${isEvenRow
-                                                                ? "left-full w-3 md:w-12 origin-left bg-gradient-to-r from-indigo-500 to-cyan-400"
-                                                                : "right-full w-3 md:w-12 origin-right bg-gradient-to-l from-indigo-500 to-cyan-400"
-                                                                }`}
-                                                        />
+                                                        <div className={`absolute top-[50%] h-[3px] -translate-y-1/2 -z-10 ${isEvenRow ? "left-full w-3 md:w-12" : "right-full w-3 md:w-12"}`}>
+                                                            <motion.div
+                                                                initial={{ scaleX: 0 }}
+                                                                whileInView={{ scaleX: 1 }}
+                                                                viewport={{ once: true, margin: "-100px" }}
+                                                                transition={{ duration: 0.6, delay: 0.2 }}
+                                                                className={`w-full h-full rounded-full ${isEvenRow
+                                                                    ? "origin-left bg-gradient-to-r from-indigo-500 to-cyan-400"
+                                                                    : "origin-right bg-gradient-to-l from-indigo-500 to-cyan-400"
+                                                                    }`}
+                                                            />
+                                                            <motion.div
+                                                                initial={{ opacity: 0, scale: 0 }}
+                                                                whileInView={{ opacity: 1, scale: 1 }}
+                                                                viewport={{ once: true, margin: "-100px" }}
+                                                                transition={{ duration: 0.3, delay: 0.7 }}
+                                                                className={`absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 md:w-2 md:h-2 rounded-full shadow-[0_0_10px_rgba(34,211,238,0.8)] ${isEvenRow ? "-right-0.5 md:-right-1 bg-cyan-400" : "-left-0.5 md:-left-1 bg-cyan-400"
+                                                                    }`}
+                                                            />
+                                                        </div>
                                                     ) : (
                                                         // Vertical connection connecting cards across rows downwards
-                                                        <motion.div
-                                                            initial={{ scaleY: 0 }}
-                                                            whileInView={{ scaleY: 1 }}
-                                                            viewport={{ once: true, margin: "-50px" }}
-                                                            transition={{ duration: 0.6, delay: 0.2 }}
-                                                            className="absolute left-1/2 top-full w-[2px] md:w-[3px] h-4 md:h-12 bg-gradient-to-b from-cyan-400 to-indigo-500 origin-top rounded-full transform -translate-x-1/2 -z-10"
-                                                        />
+                                                        <div className="absolute left-1/2 top-full w-[2px] md:w-[3px] h-4 md:h-12 -translate-x-1/2 -z-10">
+                                                            <motion.div
+                                                                initial={{ scaleY: 0 }}
+                                                                whileInView={{ scaleY: 1 }}
+                                                                viewport={{ once: true, margin: "-50px" }}
+                                                                transition={{ duration: 0.6, delay: 0.2 }}
+                                                                className="w-full h-full origin-top rounded-full bg-gradient-to-b from-cyan-400 to-indigo-500"
+                                                            />
+                                                            <motion.div
+                                                                initial={{ opacity: 0, scale: 0 }}
+                                                                whileInView={{ opacity: 1, scale: 1 }}
+                                                                viewport={{ once: true, margin: "-50px" }}
+                                                                transition={{ duration: 0.3, delay: 0.7 }}
+                                                                className="absolute -bottom-0.5 md:-bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.8)]"
+                                                            />
+                                                        </div>
                                                     )}
                                                 </>
                                             )}
