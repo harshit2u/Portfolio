@@ -69,7 +69,7 @@ export default function About() {
             <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <SectionHeading title="About Me" subtitle="Get to know my background and experience" />
 
-                <div className="grid lg:grid-cols-2 gap-12 items-start">
+                <div className="grid lg:grid-cols-2 gap-12 items-center lg:gap-16">
                     {/* Bio */}
                     <motion.div
                         initial={{ opacity: 0, x: -40 }}
