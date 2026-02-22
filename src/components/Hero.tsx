@@ -9,7 +9,7 @@ export default function Hero() {
     return (
         <section
             id="home"
-            className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-12 lg:pt-0 lg:pb-0"
+            className="relative min-h-[100svh] flex items-center justify-center overflow-hidden pt-24 pb-12 lg:pt-32 lg:pb-16"
         >
             {/* Geometric Shapes Animation */}
             <GeometricBackground />
@@ -20,7 +20,7 @@ export default function Hero() {
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
-                    className="relative w-44 h-44 sm:w-56 sm:h-56 lg:w-72 lg:h-72 mx-auto mb-6 sm:mb-8 rounded-full p-1 bg-gradient-to-tr from-sky-400 to-teal-400"
+                    className="relative w-44 h-44 sm:w-56 sm:h-56 lg:w-64 lg:h-64 xl:w-72 xl:h-72 mx-auto mb-6 sm:mb-8 rounded-full p-1 bg-gradient-to-tr from-sky-400 to-teal-400"
                 >
                     <div className="w-full h-full rounded-full overflow-hidden bg-slate-900 border-4 border-slate-900 relative group">
                         <img
