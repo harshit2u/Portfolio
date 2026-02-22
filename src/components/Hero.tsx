@@ -9,7 +9,7 @@ export default function Hero() {
     return (
         <section
             id="home"
-            className="relative min-h-screen flex items-center justify-center overflow-hidden"
+            className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-12 lg:pt-0 lg:pb-0"
         >
             {/* Geometric Shapes Animation */}
             <GeometricBackground />
@@ -20,13 +20,13 @@ export default function Hero() {
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
-                    className="relative w-32 h-32 sm:w-40 sm:h-40 mx-auto mb-8 rounded-full p-1 bg-gradient-to-tr from-sky-400 to-teal-400"
+                    className="relative w-44 h-44 sm:w-56 sm:h-56 lg:w-72 lg:h-72 mx-auto mb-6 sm:mb-8 rounded-full p-1 bg-gradient-to-tr from-sky-400 to-teal-400"
                 >
                     <div className="w-full h-full rounded-full overflow-hidden bg-slate-900 border-4 border-slate-900 relative group">
                         <img
-                            src="/hu-logo.svg"
+                            src="/Harshit_Pic.webp"
                             alt="Harshit Upadhyay"
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
                         />
                         {/* Overlay for "Change Image" hint could go here, or just let user know */}
                     </div>

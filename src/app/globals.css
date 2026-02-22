@@ -47,6 +47,7 @@ body {
 /* ── Scrollbar ──────────────────────────────── */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px; /* Added height for horizontal scrollbar */
 }
 
 ::-webkit-scrollbar-track {
@@ -54,12 +55,43 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-indigo-500);
+  background: rgba(14, 165, 233, 0.5); /* Semi-transparent indigo */
   border-radius: 9999px;
+  border: 2px solid var(--color-navy-900); /* Adds inner padding feel */
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-indigo-400);
+}
+
+/* ── Custom Horizontal Scrollbar ────────────── */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 6px; /* Thinner horizontal scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* Invisible track for floating look */
+  margin: 0 20px; /* Padding on edges */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3); /* Very subtle indigo */
+  border-radius: 9999px;
+  border: none;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.6); /* Slightly more visible on hover */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-cyan-400); /* Cyan accent when hovered over thumb */
+}
+
+/* Firefox compatibility */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99, 102, 241, 0.3) transparent;
 }
 
 /* ── Gradient text ──────────────────────────── */

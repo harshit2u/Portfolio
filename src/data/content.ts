@@ -66,8 +66,7 @@ export const skillCategories: SkillCategory[] = [
   {
     category: "Languages",
     skills: [
-      { name: "C", level: 70 },
-      { name: "C++", level: 70 },
+      { name: "C / C++", level: 75 },
       { name: "Java", level: 80 },
       { name: "Python", level: 75 },
       { name: "C#", level: 65 },
@@ -78,8 +77,7 @@ export const skillCategories: SkillCategory[] = [
   {
     category: "Web",
     skills: [
-      { name: "HTML", level: 95 },
-      { name: "CSS", level: 90 },
+      { name: "HTML & CSS", level: 95 },
       { name: "JavaScript", level: 90 },
     ],
   },
@@ -98,13 +96,9 @@ export const skillCategories: SkillCategory[] = [
   {
     category: "Tools",
     skills: [
-      { name: "Git", level: 85 },
-      { name: "GitHub", level: 85 },
+      { name: "Git / GitHub", level: 85 },
       { name: "VS Code", level: 90 },
-      { name: "Postman", level: 80 },
-      { name: "Compass", level: 75 },
-      { name: "Vercel", level: 80 },
-      { name: "Netlify", level: 75 },
+      { name: "Vercel / Netlify", level: 80 },
       { name: "Figma", level: 65 },
     ],
   },
@@ -126,26 +120,12 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "sharath-enterprises",
-    title: "Sharath Enterprises",
-    description:
-      "A trusted source for AC and Refrigeration spare parts in Mumbai. Top quality compressors, copper pipes, and HVAC tools.",
-    techStack: ["React", "Vite", "Tailwind CSS"],
-    liveUrl: "https://sharath-enterprises.vercel.app/",
-    githubUrl: "#",
-    category: "Web",
-    featured: true,
-    gradient: "from-cyan-500 via-teal-500 to-green-500",
-    icon: "ShoppingBag",
-    image: ["/sharath.webp"],
-  },
-  {
     id: "campus-buddy",
     title: "CAMPUS BUDDY",
     description:
       "A student academic benefits mobile application providing study resources, attendance tracking, timetable management, and peer collaboration features.",
     techStack: ["React Native", "Firebase", "Node.js"],
-    githubUrl: "#",
+    liveUrl: "https://www.campusbuddy.online/",
     category: "Mobile",
     featured: true,
     gradient: "from-violet-600 via-purple-600 to-fuchsia-600",
@@ -195,6 +175,20 @@ export const projects: Project[] = [
     image: ["/maq.webp"],
   },
   {
+    id: "sharath-enterprises",
+    title: "Sharath Enterprises",
+    description:
+      "A trusted source for AC and Refrigeration spare parts in Mumbai. Top quality compressors, copper pipes, and HVAC tools.",
+    techStack: ["React", "Vite", "Tailwind CSS"],
+    liveUrl: "https://sharath-enterprises.vercel.app/",
+    githubUrl: "#",
+    category: "Web",
+    featured: true,
+    gradient: "from-cyan-500 via-teal-500 to-green-500",
+    icon: "ShoppingBag",
+    image: ["/sharath.webp"],
+  },
+  {
     id: "hospital-mgmt",
     title: "Hospital Management Website",
     description:
@@ -242,45 +236,43 @@ export interface Experience {
   period: string;
   description: string;
   current: boolean;
-  logo?: string;
+  logo?: string | string[];
 }
 
 export const experiences: Experience[] = [
   {
+    id: "vibex",
+    role: "Startup Tech",
+    company: "Vibex Technology",
+    period: "2026 - Current",
+    description:
+      "Working as a core startup tech, responsible for developing scalable infrastructure and modern web applications.",
+    current: true,
+  },
+  {
+    id: "freelance",
+    role: "Freelance Web Developer",
+    company: "International Clients",
+    period: "2025 - 2026",
+    description:
+      "Worked for international freelancing clients like JRE Services and MAQ Services to develop high-quality, production-ready websites.",
+    current: false,
+  },
+  {
     id: "getfly",
     role: "Security Analyst (Pentester)",
     company: "Getflytechnologies",
-    period: "Current",
+    period: "2025 - 2026",
     description:
-      "Conducting penetration testing, vulnerability assessments, and security audits for web applications and network infrastructure.",
-    current: true,
+      "Conducted penetration testing, vulnerability assessments, and security audits for web applications and network infrastructure.",
+    current: false,
     logo: "/getfly.webp",
-  },
-  {
-    id: "ibm",
-    role: "IBM SkillsBuild Internship",
-    company: "IBM",
-    period: "2024",
-    description:
-      "Completed front-end development internship focusing on modern web technologies, responsive design, and user experience.",
-    current: false,
-    logo: "/ibm.webp",
-  },
-  {
-    id: "google",
-    role: "AICTE Google Android Internship",
-    company: "Google (via AICTE)",
-    period: "2024",
-    description:
-      "Developed Android applications using Kotlin and Jetpack Compose, focusing on Material Design and mobile-first development.",
-    current: false,
-    logo: "/aicte.webp",
   },
   {
     id: "mern",
     role: "MERN Stack Training",
     company: "Training Program",
-    period: "2023",
+    period: "2025",
     description:
       "Intensive full-stack development training covering MongoDB, Express.js, React.js, and Node.js with real-world project delivery.",
     current: false,
@@ -290,10 +282,20 @@ export const experiences: Experience[] = [
     id: "hackathon",
     role: "Technothon Runner-Up",
     company: "Hackathon",
-    period: "2023",
+    period: "2024",
     description:
       "Secured runner-up position in Technothon hackathon with an innovative full-stack solution built under competitive time constraints.",
     current: false,
+  },
+  {
+    id: "ibm-google",
+    role: "Internship",
+    company: "IBM & Google (via AICTE)",
+    period: "2024",
+    description:
+      "Completed front-end development internship focusing on modern web technologies, responsive design, and user experience. and Developed Android applications using Kotlin and Jetpack Compose, focusing on Material Design and mobile-first development.",
+    current: false,
+    logo: ["/ibm.webp", "/aicte.webp"],
   },
 ];
 

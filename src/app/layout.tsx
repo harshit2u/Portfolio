@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/data/content";
@@ -53,7 +53,12 @@ export const metadata: Metadata = {
 };
 
 
-
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -77,7 +82,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${outfit.variable} font-sans antialiased`}
+        className={`${inter.variable} ${outfit.variable} font-sans antialiased overflow-x-hidden max-w-[100vw] w-full`}
       >
 
         {children}

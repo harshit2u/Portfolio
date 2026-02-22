@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Shield, Monitor, Smartphone, Code, Sparkles } from "lucide-react";
 import SectionHeading from "./SectionHeading";
+import ParticleCanvas from "./ParticleCanvas";
 import { siteConfig, highlights, stats } from "@/data/content";
 
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
@@ -58,6 +59,9 @@ const itemVariants = {
 export default function About() {
     return (
         <section id="about" className="py-24 lg:py-32 relative overflow-hidden">
+            {/* Interactive Particle Background */}
+            <ParticleCanvas />
+
             {/* Subtle bg glows */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-cyan-400/5 rounded-full blur-3xl pointer-events-none animate-float-delayed" />

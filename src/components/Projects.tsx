@@ -5,7 +5,6 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
     ExternalLink,
-    Github,
     X,
     ArrowUpRight,
     Hospital,
@@ -218,17 +217,7 @@ function ProjectModal({
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-500 text-white text-sm font-medium hover:shadow-lg hover:shadow-indigo-500/30 transition-all"
                             >
-                                <ExternalLink size={15} /> Live Demo
-                            </a>
-                        )}
-                        {project.githubUrl && (
-                            <a
-                                href={project.githubUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl glass border border-indigo-500/30 text-slate-200 text-sm font-medium hover:border-indigo-500/60 transition-all"
-                            >
-                                <Github size={15} /> GitHub
+                                <ExternalLink size={15} /> Live
                             </a>
                         )}
                     </motion.div>
@@ -290,7 +279,7 @@ export default function Projects() {
                         initial="hidden"
                         animate="visible"
                         exit="exit"
-                        className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
+                        className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8"
                     >
                         {filtered.map((project) => {
                             const ProjectIcon = projectIconMap[project.icon];
@@ -306,7 +295,7 @@ export default function Projects() {
                                 >
                                     {/* ── Image/Gradient Header ── */}
                                     <div
-                                        className={`relative h-56 ${project.image && project.image.length > 0 ? '' : `bg-gradient-to-br ${project.gradient}`} overflow-hidden`}
+                                        className={`relative h-28 sm:h-56 ${project.image && project.image.length > 0 ? '' : `bg-gradient-to-br ${project.gradient}`} overflow-hidden`}
                                     >
                                         {project.image && project.image.length > 0 ? (
                                             <div className="absolute inset-0 flex gap-px">
@@ -355,8 +344,8 @@ export default function Projects() {
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
                                         {/* Category pill */}
-                                        <div className="absolute top-3 right-3 z-10">
-                                            <span className="px-2.5 py-1 text-[10px] rounded-full bg-black/40 backdrop-blur-sm text-white font-medium uppercase tracking-wider">
+                                        <div className="absolute top-2 right-2 sm:top-3 sm:right-3 z-10 hidden sm:block">
+                                            <span className="px-2 sm:px-2.5 py-0.5 sm:py-1 text-[8px] sm:text-[10px] rounded-full bg-black/40 backdrop-blur-sm text-white font-medium uppercase tracking-wider">
                                                 {project.category}
                                             </span>
                                         </div>
@@ -370,16 +359,16 @@ export default function Projects() {
                                     </div>
 
                                     {/* ── Card Body ── */}
-                                    <div className="p-5">
-                                        <h3 className="text-lg font-bold text-white font-[family-name:var(--font-heading)] group-hover:gradient-text transition-all duration-300 line-clamp-1">
+                                    <div className="p-3 md:p-5">
+                                        <h3 className="text-sm md:text-lg font-bold text-white font-[family-name:var(--font-heading)] group-hover:gradient-text transition-all duration-300 line-clamp-1">
                                             {project.title}
                                         </h3>
-                                        <p className="mt-2 text-slate-400 text-sm line-clamp-2 leading-relaxed group-hover:text-slate-300 transition-colors">
+                                        <p className="mt-1 md:mt-2 text-slate-400 text-[10px] md:text-sm line-clamp-2 md:line-clamp-2 leading-relaxed group-hover:text-slate-300 transition-colors">
                                             {project.description}
                                         </p>
 
                                         {/* Tech badges with icons */}
-                                        <div className="mt-4 flex flex-wrap gap-1.5">
+                                        <div className="mt-2 md:mt-4 flex flex-wrap gap-1 md:gap-1.5">
                                             {project.techStack.map((t) => {
                                                 const meta = techMeta[t];
                                                 const Icon = meta?.icon;
@@ -387,7 +376,7 @@ export default function Projects() {
                                                     <motion.span
                                                         key={t}
                                                         whileHover={{ scale: 1.1 }}
-                                                        className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] rounded-full border cursor-default"
+                                                        className="inline-flex items-center gap-1 px-1.5 md:px-2 py-0.5 text-[8px] md:text-[10px] rounded-full border cursor-default"
                                                         style={{
                                                             backgroundColor: `${meta?.color ?? "#6366f1"}08`,
                                                             borderColor: `${meta?.color ?? "#6366f1"}25`,
@@ -402,8 +391,8 @@ export default function Projects() {
                                         </div>
 
                                         {/* Bottom action row */}
-                                        <div className="mt-4 flex items-center justify-between">
-                                            <div className="flex items-center gap-3 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
+                                        <div className="mt-2 md:mt-4 flex items-center justify-between">
+                                            <div className="flex items-center gap-2 md:gap-3 opacity-100 md:opacity-0 group-hover:opacity-100 md:translate-y-1 group-hover:translate-y-0 transition-all duration-300">
                                                 {project.liveUrl && (
                                                     <a
                                                         href={project.liveUrl}
@@ -413,17 +402,6 @@ export default function Projects() {
                                                         className="text-indigo-400 hover:text-cyan-400 transition-colors flex items-center gap-1 text-xs"
                                                     >
                                                         <ExternalLink size={12} /> Live
-                                                    </a>
-                                                )}
-                                                {project.githubUrl && (
-                                                    <a
-                                                        href={project.githubUrl}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        onClick={(e) => e.stopPropagation()}
-                                                        className="text-indigo-400 hover:text-cyan-400 transition-colors flex items-center gap-1 text-xs"
-                                                    >
-                                                        <Github size={12} /> Code
                                                     </a>
                                                 )}
                                             </div>

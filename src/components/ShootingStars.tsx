@@ -39,30 +39,19 @@ export default function ShootingStars() {
             o: Math.random() * 0.5 + 0.3, // Brighter stars
         }));
 
-        // Shooting star
-        let shootingStar: ShootingStar = {
-            x: 0,
-            y: 0,
-            len: 0,
-            speed: 0,
-            size: 0,
-            waitTime: 0,
+        // Shooting stars array
+        const createShootingStar = (): ShootingStar => ({
+            x: Math.random() * canvas.width * 1.5, // Spread them out more
+            y: Math.random() * -100, // Start slightly above screen
+            len: Math.random() * 80 + 10,
+            speed: Math.random() * 10 + 6,
+            size: Math.random() * 1 + 0.1,
+            waitTime: Math.random() * 150, // Stagger their appearances
             active: false,
-        };
+        });
 
-        const resetShootingStar = () => {
-            shootingStar = {
-                x: Math.random() * canvas.width,
-                y: 0,
-                len: Math.random() * 80 + 10,
-                speed: Math.random() * 10 + 6,
-                size: Math.random() * 1 + 0.1,
-                waitTime: Math.random() * 50, // More frequent shots
-                active: false,
-            };
-        };
-
-        resetShootingStar();
+        const numShootingStars = 15;
+        let shootingStars: ShootingStar[] = Array.from({ length: numShootingStars }, createShootingStar);
 
         let animId: number;
         const tick = () => {
@@ -76,42 +65,44 @@ export default function ShootingStars() {
                 ctx.fill();
             });
 
-            // Handle shooting star
-            if (shootingStar.active) {
-                shootingStar.x -= shootingStar.speed;
-                shootingStar.y += shootingStar.speed;
+            // Handle shooting stars
+            shootingStars.forEach((star, index) => {
+                if (star.active) {
+                    star.x -= star.speed;
+                    star.y += star.speed;
 
-                // Draw trail
-                const gradient = ctx.createLinearGradient(
-                    shootingStar.x,
-                    shootingStar.y,
-                    shootingStar.x + shootingStar.len,
-                    shootingStar.y - shootingStar.len
-                );
-                gradient.addColorStop(0, "rgba(255, 255, 255, 1)");
-                gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+                    // Draw trail
+                    const gradient = ctx.createLinearGradient(
+                        star.x,
+                        star.y,
+                        star.x + star.len,
+                        star.y - star.len
+                    );
+                    gradient.addColorStop(0, "rgba(255, 255, 255, 1)");
+                    gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
 
-                ctx.lineWidth = shootingStar.size;
-                ctx.strokeStyle = gradient;
-                ctx.beginPath();
-                ctx.moveTo(shootingStar.x, shootingStar.y);
-                ctx.lineTo(
-                    shootingStar.x + shootingStar.len,
-                    shootingStar.y - shootingStar.len
-                );
-                ctx.stroke();
+                    ctx.lineWidth = star.size;
+                    ctx.strokeStyle = gradient;
+                    ctx.beginPath();
+                    ctx.moveTo(star.x, star.y);
+                    ctx.lineTo(
+                        star.x + star.len,
+                        star.y - star.len
+                    );
+                    ctx.stroke();
 
-                // Reset if out of bounds
-                if (shootingStar.x < -100 || shootingStar.y > canvas.height + 100) {
-                    resetShootingStar();
-                }
-            } else {
-                if (shootingStar.waitTime > 0) {
-                    shootingStar.waitTime--;
+                    // Reset if out of bounds
+                    if (star.x < -200 || star.y > canvas.height + 200) {
+                        shootingStars[index] = createShootingStar();
+                    }
                 } else {
-                    shootingStar.active = true;
+                    if (star.waitTime > 0) {
+                        star.waitTime--;
+                    } else {
+                        star.active = true;
+                    }
                 }
-            }
+            });
 
             animId = requestAnimationFrame(tick);
         };

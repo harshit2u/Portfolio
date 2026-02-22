@@ -18,7 +18,6 @@ import {
     SiGithub,
     SiFigma,
     SiTailwindcss,
-    SiPostman,
     SiVercel,
     SiNetlify,
     SiSpringboot,
@@ -29,8 +28,49 @@ import { VscCode } from "react-icons/vsc";
 import { FaJava } from "react-icons/fa";
 import { TbBrandCpp, TbBrandReactNative, TbLetterC } from "react-icons/tb";
 import SectionHeading from "./SectionHeading";
+import ParticleCanvas from "./ParticleCanvas";
 import { skillCategories } from "@/data/content";
 import type { IconType } from "react-icons";
+
+const HtmlCssIcon: IconType = (props) => {
+    const { color, style, ...rest } = props;
+    return (
+        <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
+            <SiHtml5 {...rest} color="#E34F26" />
+            <SiCss3 {...rest} color="#1572B6" />
+        </div>
+    );
+};
+
+const CCppIcon: IconType = (props) => {
+    const { color, style, ...rest } = props;
+    return (
+        <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
+            <TbLetterC {...rest} color="#A8B9CC" />
+            <TbBrandCpp {...rest} color="#00599C" />
+        </div>
+    );
+};
+
+const GitGithubIcon: IconType = (props) => {
+    const { color, style, ...rest } = props;
+    return (
+        <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
+            <SiGit {...rest} color="#F05032" />
+            <SiGithub {...rest} color="#FFFFFF" />
+        </div>
+    );
+};
+
+const VercelNetlifyIcon: IconType = (props) => {
+    const { color, style, ...rest } = props;
+    return (
+        <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
+            <SiVercel {...rest} color="#FFFFFF" />
+            <SiNetlify {...rest} color="#00C7B7" />
+        </div>
+    );
+};
 
 /* ── Icon + color mapping per skill ────────── */
 const skillMeta: Record<string, { icon: IconType; color: string }> = {
@@ -43,22 +83,20 @@ const skillMeta: Record<string, { icon: IconType; color: string }> = {
     Java: { icon: FaJava, color: "#ED8B00" },
     C: { icon: TbLetterC, color: "#A8B9CC" },
     "C++": { icon: TbBrandCpp, color: "#00599C" },
+    "C / C++": { icon: CCppIcon, color: "#00599C" },
     "C#": { icon: SiDotnet, color: "#512BD4" },
     HTML: { icon: SiHtml5, color: "#E34F26" },
     CSS: { icon: SiCss3, color: "#1572B6" },
+    "HTML & CSS": { icon: HtmlCssIcon, color: "#E34F26" },
     JavaScript: { icon: SiJavascript, color: "#F7DF1E" },
     TypeScript: { icon: SiTypescript, color: "#3178C6" },
     MySQL: { icon: SiMysql, color: "#4479A1" },
     Firebase: { icon: SiFirebase, color: "#FFCA28" },
     PostgreSQL: { icon: SiPostgresql, color: "#4169E1" },
     "Spring Boot": { icon: SiSpringboot, color: "#6DB33F" },
-    Git: { icon: SiGit, color: "#F05032" },
-    GitHub: { icon: SiGithub, color: "#FFFFFF" },
+    "Git / GitHub": { icon: GitGithubIcon, color: "#FFFFFF" },
     "VS Code": { icon: VscCode, color: "#007ACC" },
-    Postman: { icon: SiPostman, color: "#FF6C37" },
-    Compass: { icon: SiMongodb, color: "#47A248" },
-    Vercel: { icon: SiVercel, color: "#FFFFFF" },
-    Netlify: { icon: SiNetlify, color: "#00C7B7" },
+    "Vercel / Netlify": { icon: VercelNetlifyIcon, color: "#00C7B7" },
     Figma: { icon: SiFigma, color: "#F24E1E" },
     "Tailwind CSS": { icon: SiTailwindcss, color: "#06B6D4" },
 };
@@ -78,6 +116,7 @@ export default function Skills() {
     return (
         <section id="skills" className="py-24 lg:py-32 relative overflow-hidden">
             {/* Decorative background */}
+            <ParticleCanvas />
             <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute top-1/4 left-0 w-[350px] h-[350px] bg-indigo-500/5 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
 
@@ -108,7 +147,7 @@ export default function Skills() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.3 }}
-                        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
+                        className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4"
                     >
                         {uniqueSkills.map((skill) => {
                             const meta = skillMeta[skill.name];
@@ -119,10 +158,16 @@ export default function Skills() {
                                 <motion.div
                                     key={skill.name}
                                     whileHover={{ y: -5, borderColor: iconColor }}
-                                    className="glass glow-border rounded-xl p-4 flex flex-col items-center justify-center gap-3 transition-all duration-300 group border border-transparent hover:bg-slate-800/50"
+                                    className="glass glow-border rounded-xl p-3 sm:p-4 flex flex-col items-center justify-center gap-2 sm:gap-3 transition-all duration-300 group border border-transparent hover:bg-slate-800/50"
                                 >
-
-                                    <span className="text-slate-300 font-medium text-sm text-center group-hover:text-white transition-colors duration-300">
+                                    {Icon && (
+                                        <Icon
+                                            size={32}
+                                            style={{ color: iconColor }}
+                                            className="group-hover:scale-110 transition-transform duration-300"
+                                        />
+                                    )}
+                                    <span className="text-slate-300 font-medium text-[10px] sm:text-sm text-center group-hover:text-white transition-colors duration-300 leading-tight">
                                         {skill.name}
                                     </span>
                                 </motion.div>
