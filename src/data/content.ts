@@ -180,7 +180,7 @@ export const projects: Project[] = [
     description:
       "A trusted source for AC and Refrigeration spare parts in Mumbai. Top quality compressors, copper pipes, and HVAC tools.",
     techStack: ["React", "Vite", "Tailwind CSS"],
-    liveUrl: "https://sharath-enterprises.vercel.app/",
+    liveUrl: "https://www.sharathenterprises.in/",
     githubUrl: "#",
     category: "Web",
     featured: true,
@@ -242,11 +242,11 @@ export interface Experience {
 export const experiences: Experience[] = [
   {
     id: "vibex",
-    role: "Startup Tech",
-    company: "Vibex Technology",
+    role: "VibeX Technology",
+    company: "VibeX Technology",
     period: "2026 - Current",
     description:
-      "Working as a core startup tech, responsible for developing scalable infrastructure and modern web applications.",
+      "Working as a core member at VibeX Technology, responsible for developing scalable infrastructure and modern web applications.",
     current: true,
   },
   {
