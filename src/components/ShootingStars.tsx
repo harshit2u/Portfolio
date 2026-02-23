@@ -55,13 +55,15 @@ export default function ShootingStars() {
 
         let animId: number;
         const tick = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const styles = getComputedStyle(document.documentElement);
+            const starRgb = styles.getPropertyValue("--bg-star-rgb").trim() || "255, 255, 255";
 
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             // Draw static stars
             stars.forEach((s) => {
                 ctx.beginPath();
                 ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${s.o})`;
+                ctx.fillStyle = `rgba(${starRgb}, ${s.o})`;
                 ctx.fill();
             });
 
@@ -78,8 +80,8 @@ export default function ShootingStars() {
                         star.x + star.len,
                         star.y - star.len
                     );
-                    gradient.addColorStop(0, "rgba(255, 255, 255, 1)");
-                    gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+                    gradient.addColorStop(0, `rgba(${starRgb}, 1)`);
+                    gradient.addColorStop(1, `rgba(${starRgb}, 0)`);
 
                     ctx.lineWidth = star.size;
                     ctx.strokeStyle = gradient;
@@ -123,7 +125,7 @@ export default function ShootingStars() {
     return (
         <canvas
             ref={ref}
-            className="absolute inset-0 w-full h-full pointer-events-none"
+            className="absolute inset-0 w-full h-full pointer-events-none opacity-60 mix-blend-[var(--theme-blend)]"
         />
     );
 }

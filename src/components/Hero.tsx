@@ -73,7 +73,7 @@ export default function Hero() {
                             }}
                             whileHover={{ scale: 1.05, translateY: -2 }}
                             whileTap={{ scale: 0.98 }}
-                            className="group inline-flex justify-center items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 text-white font-bold text-lg shadow-lg shadow-indigo-500/30 hover:shadow-cyan-500/40 transition-all duration-300"
+                            className="group inline-flex justify-center items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-sky-400 to-teal-400 text-white font-bold text-lg shadow-lg shadow-sky-400/30 hover:shadow-teal-400/40 transition-all duration-300"
                         >
                             <ExternalLink size={20} className="group-hover:rotate-12 transition-transform" />
                             View Projects

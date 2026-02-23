@@ -14,6 +14,10 @@ export default function ConstellationBackground() {
         let width = canvas.width = window.innerWidth;
         let height = canvas.height = window.innerHeight;
 
+        const styles = getComputedStyle(document.documentElement);
+        const accentRgb = styles.getPropertyValue("--bg-grid-rgb").trim() || "56, 189, 248";
+        const starRgb = styles.getPropertyValue("--bg-star-rgb").trim() || "255, 255, 255";
+
         let mouseX = -1000;
         let mouseY = -1000;
 
@@ -70,7 +74,7 @@ export default function ConstellationBackground() {
                 // Draw Particle
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = "rgba(56, 189, 248, 0.6)"; // Sky-400
+                ctx.fillStyle = `rgba(${accentRgb}, 0.6)`;
                 ctx.fill();
 
                 // Mouse Interaction
@@ -82,7 +86,7 @@ export default function ConstellationBackground() {
                     ctx.beginPath();
                     ctx.moveTo(p.x, p.y);
                     ctx.lineTo(mouseX, mouseY);
-                    ctx.strokeStyle = `rgba(14, 165, 233, ${0.4 * (1 - distMouse / mouseDistance)})`; // Sky-500
+                    ctx.strokeStyle = `rgba(${accentRgb}, ${0.4 * (1 - distMouse / mouseDistance)})`;
                     ctx.lineWidth = 1;
                     ctx.stroke();
 
@@ -104,7 +108,7 @@ export default function ConstellationBackground() {
                         ctx.beginPath();
                         ctx.moveTo(p.x, p.y);
                         ctx.lineTo(p2.x, p2.y);
-                        ctx.strokeStyle = `rgba(56, 189, 248, ${0.15 * (1 - dist / connectionDistance)})`;
+                        ctx.strokeStyle = `rgba(${accentRgb}, ${0.15 * (1 - dist / connectionDistance)})`;
                         ctx.lineWidth = 0.5;
                         ctx.stroke();
                     }
@@ -128,7 +132,7 @@ export default function ConstellationBackground() {
     return (
         <canvas
             ref={canvasRef}
-            className="absolute inset-0 w-full h-full pointer-events-none"
+            className="absolute inset-0 w-full h-full pointer-events-none mix-blend-[var(--theme-blend)]"
         />
     );
 }

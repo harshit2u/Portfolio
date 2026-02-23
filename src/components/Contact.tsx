@@ -151,7 +151,7 @@ export default function Contact() {
                                     disabled={status === "sending"}
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="w-full py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 text-white font-semibold flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 transition-shadow disabled:opacity-50"
+                                    className="w-full py-3.5 rounded-xl bg-gradient-to-r from-sky-400 to-teal-400 text-white font-semibold flex items-center justify-center gap-2 shadow-lg shadow-sky-400/25 hover:shadow-teal-400/40 transition-shadow disabled:opacity-50"
                                 >
                                     {status === "sending" ? (
                                         <Loader2 size={18} className="animate-spin" />

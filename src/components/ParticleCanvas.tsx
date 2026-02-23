@@ -39,6 +39,11 @@ export default function ParticleCanvas() {
 
         let animId: number;
         const tick = () => {
+            const styles = getComputedStyle(document.documentElement);
+            const pRgb1 = styles.getPropertyValue("--particle-rgb-1").trim() || "139, 92, 246";
+            const pRgb2 = styles.getPropertyValue("--particle-rgb-2").trim() || "129, 140, 248";
+            const pRgb3 = styles.getPropertyValue("--particle-rgb-3").trim() || "99, 102, 241";
+
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             for (let i = 0; i < particles.length; i++) {
                 const p = particles[i];
@@ -64,7 +69,7 @@ export default function ParticleCanvas() {
                         ctx.beginPath();
                         ctx.moveTo(p.x, p.y);
                         ctx.lineTo(mouse.x, mouse.y);
-                        ctx.strokeStyle = `rgba(139, 92, 246, ${0.5 * force})`;
+                        ctx.strokeStyle = `rgba(${pRgb1}, ${0.5 * force})`;
                         ctx.lineWidth = 1.2 * force;
                         ctx.stroke();
                     }
@@ -82,7 +87,7 @@ export default function ParticleCanvas() {
 
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(129, 140, 248, ${p.o})`;
+                ctx.fillStyle = `rgba(${pRgb2}, ${p.o})`;
                 ctx.fill();
             }
 
@@ -96,7 +101,7 @@ export default function ParticleCanvas() {
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(99, 102, 241, ${0.3 * (1 - dist / 120)})`;
+                        ctx.strokeStyle = `rgba(${pRgb3}, ${0.3 * (1 - dist / 120)})`;
                         ctx.lineWidth = 0.8;
                         ctx.stroke();
                     }
@@ -152,7 +157,8 @@ export default function ParticleCanvas() {
     return (
         <canvas
             ref={ref}
-            className="absolute inset-0 w-full h-full pointer-events-none opacity-60 mix-blend-screen"
+            className="absolute inset-0 w-full h-full pointer-events-none mix-blend-[var(--theme-blend)]"
+            style={{ opacity: "var(--canvas-opacity, 0.6)" }}
         />
     );
 }

@@ -49,7 +49,7 @@ const projectIconMap: Record<
 const techMeta: Record<string, { icon: IconType; color: string }> = {
     React: { icon: SiReact, color: "#61DAFB" },
     "Node.js": { icon: SiNodedotjs, color: "#339933" },
-    Express: { icon: SiExpress, color: "#FFFFFF" },
+    Express: { icon: SiExpress, color: "var(--brand-white)" },
     MongoDB: { icon: SiMongodb, color: "#47A248" },
     MySQL: { icon: SiMysql, color: "#4479A1" },
     Firebase: { icon: SiFirebase, color: "#FFCA28" },
@@ -93,16 +93,16 @@ function ProjectModal({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md"
             onClick={onClose}
         >
             <motion.div
-                initial={{ scale: 0.85, opacity: 0, y: 30 }}
+                initial={{ scale: 0.9, opacity: 0, y: 20 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.85, opacity: 0, y: 30 }}
-                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
                 onClick={(e) => e.stopPropagation()}
-                className="glass rounded-3xl max-w-lg w-full relative border border-indigo-500/20 overflow-hidden"
+                className="glass rounded-3xl max-w-3xl w-full relative border border-indigo-500/20 overflow-hidden shadow-2xl"
             >
                 {/* Header: collage, single image, or gradient fallback */}
                 <div
@@ -143,7 +143,7 @@ function ProjectModal({
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 </div>
 
-                <div className="p-8">
+                <div className="p-6 sm:p-10">
                     <button
                         onClick={onClose}
                         className="absolute top-4 right-4 p-2 rounded-lg bg-black/30 hover:bg-black/50 text-white transition-all z-10"
@@ -163,7 +163,7 @@ function ProjectModal({
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="text-2xl font-bold text-white font-[family-name:var(--font-heading)] mt-2 mb-4"
+                        className="text-2xl sm:text-4xl font-bold text-white font-[family-name:var(--font-heading)] mt-3 mb-6 tracking-tight"
                     >
                         {project.title}
                     </motion.h3>
@@ -172,7 +172,7 @@ function ProjectModal({
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="text-slate-300 leading-relaxed"
+                        className="text-slate-300 leading-relaxed text-sm sm:text-base"
                     >
                         {project.description}
                     </motion.p>
@@ -182,7 +182,7 @@ function ProjectModal({
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 }}
-                        className="mt-6 flex flex-wrap gap-2.5"
+                        className="mt-8 flex flex-wrap gap-2.5"
                     >
                         {project.techStack.map((t) => {
                             const meta = techMeta[t];
@@ -190,12 +190,13 @@ function ProjectModal({
                             return (
                                 <span
                                     key={t}
-                                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-full border"
+                                    className="project-tech-badge inline-flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-full border"
                                     style={{
-                                        backgroundColor: `${meta?.color ?? "#6366f1"}10`,
-                                        borderColor: `${meta?.color ?? "#6366f1"}30`,
-                                        color: meta?.color ?? "#818cf8",
-                                    }}
+                                        '--badge-color': meta?.color ?? "#0284c7",
+                                        backgroundColor: meta?.color?.startsWith("var") ? "rgba(var(--brand-white-rgb), 0.1)" : `${meta?.color ?? "#0284c7"}15`,
+                                        borderColor: meta?.color?.startsWith("var") ? "rgba(var(--brand-white-rgb), 0.3)" : `${meta?.color ?? "#0284c7"}30`,
+                                        color: 'var(--badge-color)',
+                                    } as React.CSSProperties}
                                 >
                                     {Icon && <Icon size={12} />}
                                     {t}
@@ -215,7 +216,7 @@ function ProjectModal({
                                 href={project.liveUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-500 text-white text-sm font-medium hover:shadow-lg hover:shadow-indigo-500/30 transition-all"
+                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0284c7] to-[#0d9488] text-white text-sm font-medium hover:shadow-lg hover:shadow-[#0284c7]/30 transition-all"
                             >
                                 <ExternalLink size={15} /> Live
                             </a>
@@ -242,9 +243,7 @@ export default function Projects() {
     return (
         <section id="projects" className="py-24 lg:py-32 relative overflow-hidden">
             {/* Background Effects */}
-            <div className="absolute inset-0 bg-gradient-to-br from-navy-950 via-indigo-600/5 to-navy-950 animate-gradient-shift pointer-events-none" />
-            <div className="absolute top-1/3 left-0 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-3xl pointer-events-none animate-float" />
-            <div className="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-cyan-400/10 rounded-full blur-3xl pointer-events-none animate-float-delayed" />
+            <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
             <ParticleCanvas />
 
             <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
@@ -262,7 +261,7 @@ export default function Projects() {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${filter === cat
-                                ? "bg-gradient-to-r from-indigo-600 to-cyan-500 text-white shadow-lg shadow-indigo-500/30"
+                                ? "bg-gradient-to-r from-[#0284c7] to-[#0d9488] text-white shadow-lg shadow-[#0284c7]/30"
                                 : "glass text-slate-300 hover:text-white"
                                 }`}
                         >
@@ -376,12 +375,13 @@ export default function Projects() {
                                                     <motion.span
                                                         key={t}
                                                         whileHover={{ scale: 1.1 }}
-                                                        className="inline-flex items-center gap-1 px-1.5 md:px-2 py-0.5 text-[8px] md:text-[10px] rounded-full border cursor-default"
+                                                        className="project-tech-badge inline-flex items-center gap-1 px-1.5 md:px-2 py-0.5 text-[8px] md:text-[10px] rounded-full border cursor-default"
                                                         style={{
-                                                            backgroundColor: `${meta?.color ?? "#6366f1"}08`,
-                                                            borderColor: `${meta?.color ?? "#6366f1"}25`,
-                                                            color: meta?.color ?? "#818cf8",
-                                                        }}
+                                                            '--badge-color': meta?.color ?? "#0284c7",
+                                                            backgroundColor: meta?.color?.startsWith("var") ? "rgba(var(--brand-white-rgb), 0.08)" : `${meta?.color ?? "#0284c7"}15`,
+                                                            borderColor: meta?.color?.startsWith("var") ? "rgba(var(--brand-white-rgb), 0.25)" : `${meta?.color ?? "#0284c7"}30`,
+                                                            color: 'var(--badge-color)',
+                                                        } as React.CSSProperties}
                                                     >
                                                         {Icon && <Icon size={9} />}
                                                         {t}
@@ -399,7 +399,7 @@ export default function Projects() {
                                                         target="_blank"
                                                         rel="noopener noreferrer"
                                                         onClick={(e) => e.stopPropagation()}
-                                                        className="text-indigo-400 hover:text-cyan-400 transition-colors flex items-center gap-1 text-xs"
+                                                        className="text-[#0284c7] hover:text-[#0d9488] transition-colors flex items-center gap-1 text-xs"
                                                     >
                                                         <ExternalLink size={12} /> Live
                                                     </a>

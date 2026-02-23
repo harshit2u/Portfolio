@@ -2,18 +2,40 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { navLinks, siteConfig } from "@/data/content";
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
+    const [isWhiteMode, setIsWhiteMode] = useState(false);
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 50);
         window.addEventListener("scroll", onScroll);
+
+        // Initialize theme state from localStorage
+        if (typeof window !== "undefined") {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "white") setIsWhiteMode(true);
+        }
+
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
+
+    const toggleTheme = () => {
+        setIsWhiteMode((prev) => {
+            const newMode = !prev;
+            if (newMode) {
+                document.documentElement.classList.add("white-mode");
+                localStorage.setItem("theme", "white");
+            } else {
+                document.documentElement.classList.remove("white-mode");
+                localStorage.setItem("theme", "dark");
+            }
+            return newMode;
+        });
+    };
 
     const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
         e.preventDefault();
@@ -68,19 +90,35 @@ export default function Navbar() {
                                 className="relative px-4 py-2 text-sm text-slate-300 hover:text-white transition-colors group"
                             >
                                 {link.label}
-                                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-0 bg-gradient-to-r from-indigo-500 to-cyan-400 transition-all group-hover:w-3/4 rounded-full" />
+                                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-0 bg-gradient-to-r from-sky-400 to-teal-400 transition-all group-hover:w-3/4 rounded-full" />
                             </a>
                         ))}
                     </div>
 
-                    {/* Mobile Toggle */}
-                    <button
-                        onClick={() => setMobileOpen(!mobileOpen)}
-                        className="md:hidden p-2 text-slate-300 hover:text-white transition-colors"
-                        aria-label="Toggle menu"
-                    >
-                        {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-                    </button>
+                    {/* Actions Panel (Theme Toggle & Mobile Menu) */}
+                    <div className="flex items-center gap-2">
+                        {/* Theme Toggle Button */}
+                        <button
+                            onClick={toggleTheme}
+                            className="p-2 text-slate-300 hover:text-white hover:bg-indigo-500/20 rounded-full transition-all group"
+                            aria-label="Toggle theme"
+                        >
+                            {isWhiteMode ? (
+                                <Moon size={20} className="group-hover:-rotate-12 transition-transform" />
+                            ) : (
+                                <Sun size={20} className="group-hover:rotate-45 transition-transform" />
+                            )}
+                        </button>
+
+                        {/* Mobile Menu Toggle */}
+                        <button
+                            onClick={() => setMobileOpen(!mobileOpen)}
+                            className="md:hidden p-2 text-slate-300 hover:text-white transition-colors"
+                            aria-label="Toggle menu"
+                        >
+                            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+                        </button>
+                    </div>
                 </div>
             </div>
 

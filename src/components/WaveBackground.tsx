@@ -14,10 +14,15 @@ export default function WaveBackground() {
         let width = canvas.width = window.innerWidth;
         let height = canvas.height = window.innerHeight;
 
+        const styles = getComputedStyle(document.documentElement);
+        const pRgb1 = styles.getPropertyValue("--particle-rgb-1").trim() || "14, 165, 233";
+        const pRgb2 = styles.getPropertyValue("--particle-rgb-2").trim() || "45, 212, 191";
+        const pRgb3 = styles.getPropertyValue("--particle-rgb-3").trim() || "99, 102, 241";
+
         const waves = [
-            { amplitude: 30, frequency: 0.01, speed: 0.02, offset: 0, color: "rgba(14, 165, 233, 0.2)" }, // Sky-500
-            { amplitude: 50, frequency: 0.005, speed: 0.015, offset: 100, color: "rgba(45, 212, 191, 0.2)" }, // Teal-400
-            { amplitude: 40, frequency: 0.008, speed: 0.01, offset: 200, color: "rgba(99, 102, 241, 0.2)" }, // Indigo-500
+            { amplitude: 30, frequency: 0.01, speed: 0.02, offset: 0, color: `rgba(${pRgb1}, 0.2)` },
+            { amplitude: 50, frequency: 0.005, speed: 0.015, offset: 100, color: `rgba(${pRgb2}, 0.2)` },
+            { amplitude: 40, frequency: 0.008, speed: 0.01, offset: 200, color: `rgba(${pRgb3}, 0.2)` },
         ];
 
         let animationId: number;
@@ -65,7 +70,7 @@ export default function WaveBackground() {
     return (
         <canvas
             ref={canvasRef}
-            className="absolute inset-0 w-full h-full pointer-events-none opacity-60"
+            className="absolute inset-0 w-full h-full pointer-events-none opacity-60 mix-blend-[var(--theme-blend)]"
         />
     );
 }

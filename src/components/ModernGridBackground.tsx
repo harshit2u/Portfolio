@@ -19,9 +19,13 @@ export default function ModernGridBackground() {
 
         // Configuration
         const gridSize = 50;
-        const baseColor = "rgba(56, 189, 248, 0.03)"; // Very subtle grid
-        const activeColor = "rgba(14, 165, 233, 0.4)"; // Bright Sky Blue
-        const highlightColor = "rgba(45, 212, 191, 0.3)"; // Teal
+
+        const styles = getComputedStyle(document.documentElement);
+        const gridRgb = styles.getPropertyValue("--bg-grid-rgb").trim() || "56, 189, 248";
+
+        const baseColor = `rgba(${gridRgb}, 0.03)`; // Very subtle grid
+        const activeColor = `rgba(${gridRgb}, 0.4)`; // Bright Sky Blue
+        const highlightColor = `rgba(14, 165, 233, 0.3)`; // Keep a bright accent for interaction
 
         interface Square {
             x: number;
@@ -144,7 +148,7 @@ export default function ModernGridBackground() {
     return (
         <canvas
             ref={canvasRef}
-            className="absolute inset-0 w-full h-full pointer-events-none"
+            className="absolute inset-0 w-full h-full pointer-events-none mix-blend-[var(--theme-blend)]"
         />
     );
 }

@@ -17,7 +17,6 @@ export default function Experience() {
         <section id="experience" className="py-24 lg:py-32 relative overflow-hidden">
             <ParticleCanvas />
             <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute top-1/4 left-0 w-[300px] h-[300px] bg-cyan-400/5 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
 
             <div className="relative mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
                 <SectionHeading title="Experience" subtitle="My professional journey" />
@@ -52,8 +51,8 @@ export default function Experience() {
                                                                 viewport={{ once: true, margin: "-100px" }}
                                                                 transition={{ duration: 0.6, delay: 0.2 }}
                                                                 className={`w-full h-full rounded-full ${isEvenRow
-                                                                    ? "origin-left bg-gradient-to-r from-indigo-500 to-cyan-400"
-                                                                    : "origin-right bg-gradient-to-l from-indigo-500 to-cyan-400"
+                                                                    ? "origin-left bg-gradient-to-r from-[#0284c7] to-[#0d9488]"
+                                                                    : "origin-right bg-gradient-to-l from-[#0284c7] to-[#0d9488]"
                                                                     }`}
                                                             />
                                                             <motion.div
@@ -61,7 +60,7 @@ export default function Experience() {
                                                                 whileInView={{ opacity: 1, scale: 1 }}
                                                                 viewport={{ once: true, margin: "-100px" }}
                                                                 transition={{ duration: 0.3, delay: 0.7 }}
-                                                                className={`absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 md:w-2 md:h-2 rounded-full shadow-[0_0_10px_rgba(34,211,238,0.8)] ${isEvenRow ? "-right-0.5 md:-right-1 bg-cyan-400" : "-left-0.5 md:-left-1 bg-cyan-400"
+                                                                className={`absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 md:w-2 md:h-2 rounded-full shadow-[0_0_10px_rgba(13,148,136,0.8)] ${isEvenRow ? "-right-0.5 md:-right-1 bg-[#0d9488]" : "-left-0.5 md:-left-1 bg-[#0d9488]"
                                                                     }`}
                                                             />
                                                         </div>
@@ -73,7 +72,7 @@ export default function Experience() {
                                                                 whileInView={{ scaleY: 1 }}
                                                                 viewport={{ once: true, margin: "-50px" }}
                                                                 transition={{ duration: 0.6, delay: 0.2 }}
-                                                                className="w-full h-full origin-top rounded-full bg-gradient-to-b from-cyan-400 to-indigo-500"
+                                                                className="w-full h-full origin-top rounded-full bg-gradient-to-b from-[#0d9488] to-[#0284c7]"
                                                             />
                                                             <motion.div
                                                                 initial={{ opacity: 0, scale: 0 }}

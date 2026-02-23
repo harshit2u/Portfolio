@@ -59,12 +59,8 @@ const itemVariants = {
 export default function About() {
     return (
         <section id="about" className="py-24 lg:py-32 relative overflow-hidden">
-            {/* Interactive Particle Background */}
+            {/* Standard uniform background matching other sections */}
             <ParticleCanvas />
-
-            {/* Subtle bg glows */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-cyan-400/5 rounded-full blur-3xl pointer-events-none animate-float-delayed" />
 
             <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <SectionHeading title="About Me" subtitle="Get to know my background and experience" />
@@ -167,10 +163,10 @@ export default function About() {
                             className="glass rounded-2xl p-6 text-center group relative overflow-hidden cursor-default"
                         >
                             {/* Top accent stripe */}
-                            <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-500 to-cyan-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                            <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#0284c7] to-[#0d9488] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
                             <motion.div
-                                className="text-3xl sm:text-4xl font-bold gradient-text font-[family-name:var(--font-heading)]"
+                                className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-heading)] text-[#0284c7] group-hover:text-[#0d9488] transition-colors"
                                 whileHover={{ scale: 1.1 }}
                                 transition={{ type: "spring", stiffness: 400 }}
                             >

@@ -13,6 +13,12 @@ export default function GeometricBackground() {
 
         let width = canvas.width = window.innerWidth;
         let height = canvas.height = window.innerHeight;
+
+        const styles = getComputedStyle(document.documentElement);
+        const pRgb1 = styles.getPropertyValue("--particle-rgb-1").trim() || "99, 102, 241";
+        const pRgb2 = styles.getPropertyValue("--particle-rgb-2").trim() || "236, 72, 153";
+        const pRgb3 = styles.getPropertyValue("--particle-rgb-3").trim() || "34, 211, 238";
+
         let mouseX = -1000;
         let mouseY = -1000;
 
@@ -32,10 +38,10 @@ export default function GeometricBackground() {
         }
 
         const colors = [
-            "rgba(99, 102, 241, 0.4)", // Indigo
-            "rgba(236, 72, 153, 0.4)", // Pink
-            "rgba(34, 211, 238, 0.4)", // Cyan
-            "rgba(139, 92, 246, 0.4)", // Violet
+            `rgba(${pRgb1}, 0.4)`,
+            `rgba(${pRgb2}, 0.4)`,
+            `rgba(${pRgb3}, 0.4)`,
+            `rgba(139, 92, 246, 0.4)`, // Constant violet accent
         ];
 
         // Init
@@ -137,7 +143,7 @@ export default function GeometricBackground() {
     return (
         <canvas
             ref={canvasRef}
-            className="absolute inset-0 w-full h-full pointer-events-none bg-slate-900"
+            className="absolute inset-0 w-full h-full pointer-events-none mix-blend-[var(--theme-blend)]"
         />
     );
 }

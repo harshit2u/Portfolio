@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy-950: #0f172a;
+  --font-sans: var(--font-body);
+  --color-navy-950: #020617;
+  /* slate-950 (deeper dark mode background) */
+  --color-navy-900: #0f172a;
   /* slate-900 */
-  --color-navy-900: #1e293b;
+  --color-navy-800: #1e293b;
   /* slate-800 */
-  --color-navy-800: #334155;
+  --color-navy-700: #334155;
   /* slate-700 */
-  --color-navy-700: #475569;
+  --color-navy-600: #475569;
   /* slate-600 */
-  --color-navy-600: #64748b;
-  /* slate-500 */
   --color-indigo-500: #0ea5e9;
   /* sky-500 */
   --color-indigo-400: #38bdf8;
@@ -26,7 +27,304 @@
 
   --font-heading: "Outfit", sans-serif;
   --font-body: "Inter", sans-serif;
+
+  --theme-blend: screen;
+  --brand-white: #ffffff;
+  --brand-white-rgb: 255, 255, 255;
+
+  /* Background Animation Colors (Darker/Richer) */
+  --particle-rgb-1: 109, 40, 217;
+  /* Violet-700 */
+  --particle-rgb-2: 67, 56, 202;
+  /* Indigo-700 */
+  --particle-rgb-3: 3, 105, 161;
+  /* Sky-800 */
+
+  --bg-grid-rgb: 14, 165, 233;
+  /* Sky-500 */
+  --bg-star-rgb: 255, 255, 255;
+  /* White */
+
+  --orb-opacity: 0.15;
+  --canvas-opacity: 0.6;
 }
+
+/* ── Light Mode / White Mode Overrides ──────── */
+.white-mode {
+  /* Dynamic Variables used explicitly by custom CSS */
+  --color-navy-950: #f1f5f9;
+  /* slate-100 for better contrast against pure white cards */
+
+  --color-indigo-500: #0ea5e9;
+  /* Sky 500 */
+  --color-indigo-400: #0284c7;
+  /* Sky 600 */
+  --color-indigo-600: #0369a1;
+  /* Sky 700 */
+
+  --color-cyan-400: #14b8a6;
+  /* Teal 500 */
+  --color-cyan-300: #0f766e;
+  /* Teal 700 */
+  --color-cyan-500: #0d9488;
+  /* Teal 600 */
+
+  --theme-blend: multiply;
+  --brand-white: #0f172a;
+  --brand-white-rgb: 15, 23, 42;
+
+  /* More visible particles in white mode */
+  --particle-rgb-1: 67, 56, 202;
+  /* Indigo-700 */
+  --particle-rgb-2: 29, 78, 216;
+  /* Blue-700 */
+  --particle-rgb-3: 3, 105, 161;
+  /* Sky-800 */
+
+  --bg-grid-rgb: 2, 132, 199;
+  /* Sky-600 */
+  --bg-star-rgb: 15, 23, 42;
+  /* Slate-900 */
+
+  --orb-opacity: 0.25;
+  --canvas-opacity: 1;
+  /* Boosted for white mode visibility */
+}
+
+/* OVERRIDE TAILWIND LITERALS (Force inversion) */
+.white-mode .bg-slate-950,
+.white-mode .bg-slate-900 {
+  background-color: #fbfdff !important;
+}
+
+.white-mode .bg-slate-800,
+.white-mode .bg-slate-800\/50,
+.white-mode .bg-slate-800\/80 {
+  background-color: #f1f5f9 !important;
+}
+
+.white-mode .bg-slate-700,
+.white-mode .bg-slate-700\/50 {
+  background-color: #e2e8f0 !important;
+}
+
+/* Text color inversions - explicitly using hex values that look beautiful on light mode */
+.white-mode .text-white,
+.white-mode .text-slate-50 {
+  color: #0f172a !important;
+}
+
+.white-mode .text-slate-200,
+.white-mode .text-slate-300,
+.white-mode .text-slate-400 {
+  color: #1e293b !important;
+  font-weight: 500 !important;
+}
+
+.white-mode .text-slate-400 {
+  color: #334155 !important;
+}
+
+.white-mode .text-slate-500 {
+  color: #475569 !important;
+}
+
+.white-mode .text-slate-600 {
+  color: #64748b !important;
+}
+
+/* Badge and Accent Text Fixes */
+.white-mode .text-indigo-300 {
+  color: #0369a1 !important;
+}
+
+.white-mode .text-indigo-400 {
+  color: #075985 !important;
+}
+
+.white-mode .text-cyan-400 {
+  color: #0f766e !important;
+}
+
+.white-mode .text-cyan-300 {
+  color: #115e59 !important;
+}
+
+.white-mode .border-indigo-500\/20 {
+  border-color: rgba(79, 70, 229, 0.3) !important;
+}
+
+/* Project Card & Modal Badge Overrides */
+.white-mode .project-tech-badge {
+  background-color: transparent !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: #1e293b !important;
+  font-weight: 600 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.white-mode .project-tech-badge svg {
+  color: var(--badge-color) !important;
+  filter: saturate(1.5) brightness(0.85);
+  /* Ensure SVG colors pop against white */
+}
+
+/* Border color inversions */
+.white-mode .border-slate-900 {
+  border-color: #cbd5e1 !important;
+}
+
+
+
+.white-mode .border-slate-800,
+.white-mode .border-slate-800\/50 {
+  border-color: #e2e8f0 !important;
+}
+
+.white-mode .border-slate-700,
+.white-mode .border-slate-700\/50 {
+  border-color: #cbd5e1 !important;
+}
+
+.white-mode .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.white-mode .border-white\/30 {
+  border-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Invert Black/White Overlays for Cards */
+.white-mode .text-black {
+  color: #ffffff !important;
+}
+
+.white-mode .bg-black {
+  background-color: #ffffff !important;
+}
+
+.white-mode .bg-black\/10 {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.white-mode .bg-black\/20 {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.white-mode .bg-black\/30 {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.white-mode .bg-black\/40 {
+  background-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.white-mode .bg-black\/50,
+.white-mode .bg-black\/60 {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.white-mode .bg-black\/70,
+.white-mode .bg-slate-900\/60 {
+  background-color: rgba(224, 231, 255, 0.6) !important;
+  /* Modals background */
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+/* Fix 'bg-white/X' inside Project cards making things milky in light mode */
+.white-mode .bg-white\/5 {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+}
+
+.white-mode .bg-white\/10 {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.white-mode .bg-white\/20 {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Invert Gradients that rely on dark variants */
+.white-mode .from-black\/60,
+.white-mode .from-black\/50,
+.white-mode .from-black\/40 {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+.white-mode .via-black\/20 {
+  display: none !important;
+}
+
+.white-mode .to-navy-950 {
+  --tw-gradient-to: #f4f6fc !important;
+}
+
+.white-mode .from-navy-950 {
+  --tw-gradient-from: #f4f6fc !important;
+}
+
+/* Force visibility of glowing orbs in white mode using custom classes instead of generic tailwind classes */
+.white-mode .orb-indigo-10,
+.white-mode .orb-cyan-10,
+.white-mode .orb-indigo-5,
+.white-mode .orb-cyan-5 {
+  background-color: rgba(var(--brand-white-rgb), 0) !important;
+  /* Hide original */
+}
+
+.white-mode .orb-indigo-10::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-indigo-600);
+  opacity: var(--orb-opacity);
+  filter: blur(100px);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.white-mode .orb-cyan-10::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-cyan-500);
+  opacity: var(--orb-opacity);
+  filter: blur(100px);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.white-mode .orb-indigo-5::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-indigo-500);
+  opacity: 0.04;
+  /* Explicitly visible for subtle backgrounds */
+  filter: blur(100px);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.white-mode .orb-cyan-5::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-cyan-500);
+  opacity: 0.04;
+  /* Explicitly visible for subtle backgrounds */
+  filter: blur(100px);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+/* Keep specific text transparent */
+.white-mode .text-transparent {
+  -webkit-text-fill-color: transparent !important;
+}
+
 
 /* ── Base ───────────────────────────────────── */
 html {
@@ -37,6 +335,12 @@ body {
   font-family: var(--font-body);
   background: var(--color-navy-950);
   color: #f8fafc;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.white-mode body {
+  color: #1e293b;
+  /* Dark slate text for readability on white bg */
 }
 
 ::selection {
@@ -47,7 +351,8 @@ body {
 /* ── Scrollbar ──────────────────────────────── */
 ::-webkit-scrollbar {
   width: 8px;
-  height: 8px; /* Added height for horizontal scrollbar */
+  height: 8px;
+  /* Added height for horizontal scrollbar */
 }
 
 ::-webkit-scrollbar-track {
@@ -55,9 +360,11 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(14, 165, 233, 0.5); /* Semi-transparent indigo */
+  background: rgba(14, 165, 233, 0.5);
+  /* Semi-transparent indigo */
   border-radius: 9999px;
-  border: 2px solid var(--color-navy-900); /* Adds inner padding feel */
+  border: 2px solid var(--color-navy-900);
+  /* Adds inner padding feel */
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -66,26 +373,32 @@ body {
 
 /* ── Custom Horizontal Scrollbar ────────────── */
 .custom-scrollbar::-webkit-scrollbar {
-  height: 6px; /* Thinner horizontal scrollbar */
+  height: 6px;
+  /* Thinner horizontal scrollbar */
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent; /* Invisible track for floating look */
-  margin: 0 20px; /* Padding on edges */
+  background: transparent;
+  /* Invisible track for floating look */
+  margin: 0 20px;
+  /* Padding on edges */
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(99, 102, 241, 0.3); /* Very subtle indigo */
+  background: rgba(99, 102, 241, 0.3);
+  /* Very subtle indigo */
   border-radius: 9999px;
   border: none;
 }
 
 .custom-scrollbar:hover::-webkit-scrollbar-thumb {
-  background: rgba(99, 102, 241, 0.6); /* Slightly more visible on hover */
+  background: rgba(99, 102, 241, 0.6);
+  /* Slightly more visible on hover */
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: var(--color-cyan-400); /* Cyan accent when hovered over thumb */
+  background: var(--color-cyan-400);
+  /* Cyan accent when hovered over thumb */
 }
 
 /* Firefox compatibility */
@@ -96,14 +409,14 @@ body {
 
 /* ── Gradient text ──────────────────────────── */
 .gradient-text {
-  background: linear-gradient(135deg, var(--color-indigo-400), var(--color-cyan-400));
+  background: linear-gradient(135deg, #0284c7, #0d9488);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-text-alt {
-  background: linear-gradient(135deg, var(--color-cyan-400), var(--color-indigo-400));
+  background: linear-gradient(135deg, #0d9488, #0284c7);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -112,17 +425,29 @@ body {
 /* ── Glassmorphism ──────────────────────────── */
 .glass {
   background: rgba(15, 23, 42, 0.75);
-  /* Higher opacity slate-900 */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(56, 189, 248, 0.2);
-  /* Sky-400 accent */
 }
 
 .glass-hover:hover {
   background: rgba(30, 41, 59, 0.9);
-  /* Higher opacity slate-800 */
   border-color: rgba(56, 189, 248, 0.5);
+}
+
+.white-mode .glass {
+  background: rgba(255, 255, 255, 1) !important;
+  /* pure white background to pop against slate-100 */
+  border: 1px solid rgba(148, 163, 184, 0.2) !important;
+  /* subtle slate-400 border */
+  box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.12) !important;
+  /* elegant, deep drop shadow */
+}
+
+.white-mode .glass-hover:hover {
+  background: rgba(255, 255, 255, 1) !important;
+  border-color: rgba(14, 165, 233, 0.4) !important;
+  box-shadow: 0 20px 40px -10px rgba(14, 165, 233, 0.15) !important;
 }
 
 /* ── Glow effects ───────────────────────────── */
@@ -134,6 +459,16 @@ body {
 .glow-cyan {
   box-shadow: 0 0 20px rgba(34, 211, 238, 0.3),
     0 0 60px rgba(34, 211, 238, 0.1);
+}
+
+.white-mode .glow-indigo {
+  box-shadow: 0 0 20px rgba(2, 132, 199, 0.2),
+    0 0 60px rgba(2, 132, 199, 0.1);
+}
+
+.white-mode .glow-cyan {
+  box-shadow: 0 0 20px rgba(13, 148, 136, 0.2),
+    0 0 60px rgba(13, 148, 136, 0.1);
 }
 
 .glow-border {
@@ -157,6 +492,12 @@ body {
 
 .glow-border:hover::after {
   opacity: 1;
+}
+
+.white-mode .glow-border::after {
+  opacity: 1;
+  /* Make glow borders permanently visible in white mode to fix outline issues */
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.5), rgba(45, 212, 191, 0.5));
 }
 
 /* ── Animations ─────────────────────────────── */
@@ -240,3 +581,5 @@ body {
 section {
   scroll-margin-top: 80px;
 }
+
+/* Force CSS compilation refresh */

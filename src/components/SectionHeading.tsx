@@ -24,7 +24,7 @@ export default function SectionHeading({ title, subtitle }: SectionHeadingProps)
                     {subtitle}
                 </p>
             )}
-            <div className="mt-4 h-1 w-20 rounded-full bg-gradient-to-r from-indigo-500 to-cyan-400" />
+            <div className="mt-4 h-1 w-20 rounded-full bg-gradient-to-r from-[#0284c7] to-[#0d9488]" />
         </motion.div>
     );
 }

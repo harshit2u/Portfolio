@@ -57,7 +57,7 @@ const GitGithubIcon: IconType = (props) => {
     return (
         <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
             <SiGit {...rest} color="#F05032" />
-            <SiGithub {...rest} color="#FFFFFF" />
+            <SiGithub {...rest} color="var(--brand-white)" />
         </div>
     );
 };
@@ -66,7 +66,7 @@ const VercelNetlifyIcon: IconType = (props) => {
     const { color, style, ...rest } = props;
     return (
         <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
-            <SiVercel {...rest} color="#FFFFFF" />
+            <SiVercel {...rest} color="var(--brand-white)" />
             <SiNetlify {...rest} color="#00C7B7" />
         </div>
     );
@@ -75,7 +75,7 @@ const VercelNetlifyIcon: IconType = (props) => {
 /* ── Icon + color mapping per skill ────────── */
 const skillMeta: Record<string, { icon: IconType; color: string }> = {
     MongoDB: { icon: SiMongodb, color: "#47A248" },
-    Express: { icon: SiExpress, color: "#FFFFFF" },
+    Express: { icon: SiExpress, color: "var(--brand-white)" },
     React: { icon: SiReact, color: "#61DAFB" },
     "Node.js": { icon: SiNodedotjs, color: "#339933" },
     "React Native": { icon: TbBrandReactNative, color: "#61DAFB" },
@@ -94,7 +94,7 @@ const skillMeta: Record<string, { icon: IconType; color: string }> = {
     Firebase: { icon: SiFirebase, color: "#FFCA28" },
     PostgreSQL: { icon: SiPostgresql, color: "#4169E1" },
     "Spring Boot": { icon: SiSpringboot, color: "#6DB33F" },
-    "Git / GitHub": { icon: GitGithubIcon, color: "#FFFFFF" },
+    "Git / GitHub": { icon: GitGithubIcon, color: "var(--brand-white)" },
     "VS Code": { icon: VscCode, color: "#007ACC" },
     "Vercel / Netlify": { icon: VercelNetlifyIcon, color: "#00C7B7" },
     Figma: { icon: SiFigma, color: "#F24E1E" },
@@ -117,8 +117,7 @@ export default function Skills() {
         <section id="skills" className="py-24 lg:py-32 relative overflow-hidden">
             {/* Decorative background */}
             <ParticleCanvas />
-            <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute top-1/4 left-0 w-[350px] h-[350px] bg-indigo-500/5 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
+            <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
 
             <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <SectionHeading title="Skills" subtitle="Technologies I work with" />
@@ -130,8 +129,8 @@ export default function Skills() {
                             key={cat}
                             onClick={() => setActive(cat)}
                             className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${active === cat
-                                ? "bg-gradient-to-r from-indigo-600 to-cyan-500 text-white shadow-lg shadow-indigo-500/30"
-                                : "glass text-slate-300 hover:text-white hover:border-indigo-500/40"
+                                ? "bg-gradient-to-r from-[#0284c7] to-[#0d9488] text-white shadow-lg shadow-[#0284c7]/30"
+                                : "glass text-slate-600 dark:text-slate-300 hover:text-navy-900 dark:hover:text-white hover:border-[#0284c7]/40"
                                 }`}
                         >
                             {cat}
@@ -194,7 +193,7 @@ export default function Skills() {
                                 >
                                     <div
                                         className="w-10 h-10 rounded-xl flex items-center justify-center group-hover:shadow-lg transition-shadow duration-300"
-                                        style={{ backgroundColor: `${color}15` }}
+                                        style={{ backgroundColor: color.startsWith("var") ? "rgba(var(--brand-white-rgb), 0.15)" : `${color}15` }}
                                     >
                                         <Icon
                                             size={22}
