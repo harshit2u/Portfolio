@@ -116,7 +116,7 @@ export default function Hero() {
                             <img
                                 src="/Harshit_Pic.webp"
                                 alt="Harshit Upadhyay"
-                                className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
+                                className="w-full h-full object-cover object-[center_20%] group-hover:scale-110 transition-transform duration-500"
                             />
                         </div>
                     </motion.div>

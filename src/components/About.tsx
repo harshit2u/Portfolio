@@ -1,12 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Shield, Monitor, Smartphone, Code, Sparkles } from "lucide-react";
+import { Shield, Monitor, Smartphone, Code } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import ParticleCanvas from "./ParticleCanvas";
-import { siteConfig, highlights, stats } from "@/data/content";
+import { siteConfig, highlights } from "@/data/content";
 
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
     Shield,
@@ -15,35 +14,6 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; className?: s
     Code,
 };
 
-/* ── Animated Counter ──────────────────────── */
-function Counter({ target, suffix }: { target: number; suffix: string }) {
-    const [count, setCount] = useState(0);
-    const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.5 });
-    const started = useRef(false);
-
-    useEffect(() => {
-        if (!inView || started.current) return;
-        started.current = true;
-        const duration = 2000;
-        const startTime = performance.now();
-
-        const animate = (now: number) => {
-            const elapsed = now - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setCount(Math.round(eased * target));
-            if (progress < 1) requestAnimationFrame(animate);
-        };
-        requestAnimationFrame(animate);
-    }, [inView, target]);
-
-    return (
-        <span ref={ref}>
-            {count}
-            {suffix}
-        </span>
-    );
-}
 
 /* ── Stagger variants ──────────────────────── */
 const containerVariants = {
@@ -146,39 +116,7 @@ export default function About() {
                     </motion.div>
                 </div>
 
-                {/* Stats */}
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
-                >
-                    {stats.map((stat) => (
-                        <motion.div
-                            key={stat.label}
-                            variants={itemVariants}
-                            whileHover={{ y: -5, scale: 1.04 }}
-                            transition={{ type: "spring", stiffness: 300 }}
-                            className="glass rounded-2xl p-6 text-center group relative overflow-hidden cursor-default"
-                        >
-                            {/* Top accent stripe */}
-                            <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#0284c7] to-[#0d9488] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
-                            <motion.div
-                                className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-heading)] text-[#0284c7] group-hover:text-[#0d9488] transition-colors"
-                                whileHover={{ scale: 1.1 }}
-                                transition={{ type: "spring", stiffness: 400 }}
-                            >
-                                <Counter target={stat.value} suffix={stat.suffix} />
-                            </motion.div>
-                            <div className="mt-2 flex items-center justify-center gap-1.5">
-                                <Sparkles size={12} className="text-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                <p className="text-slate-400 text-sm group-hover:text-slate-300 transition-colors">{stat.label}</p>
-                            </div>
-                        </motion.div>
-                    ))}
-                </motion.div>
             </div>
         </section>
     );
